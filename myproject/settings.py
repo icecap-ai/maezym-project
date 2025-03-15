@@ -53,7 +53,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',    
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True  # 개발 단계에서 편의상 전체 허용
+CORS_ORIGIN_ALLOW_ALL = True                    # 개발 단계에서 편의상 전체 허용
 
 ROOT_URLCONF = 'myproject.urls'
 
