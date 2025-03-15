@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation List</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { color: #333; }
+        ul { list-style: none; padding: 0; }
+        li { margin-bottom: 10px; padding: 10px; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+    <h1>Reservation List</h1>
+    {% if reservations %}
+        <ul>
+            {% for reservation in reservations %}
+                <li>
+                    <strong>User:</strong> {{ reservation.user.username }}<br>
+                    <strong>Date:</strong> {{ reservation.date }}<br>
+                    <strong>Time:</strong> {{ reservation.time }}<br>
+                    <strong>Notes:</strong> {{ reservation.notes }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No reservations found.</p>
+    {% endif %}
+</body>
+</html>
+

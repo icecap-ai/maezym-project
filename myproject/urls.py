@@ -17,13 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from maezym.views import ReservationViewSet         # 여기서 "maezym"은 생성한 앱 이름
+from maezym.views import ReservationViewSet, reservation_list
 
 router = routers.DefaultRouter()
 router.register(r'reservations', ReservationViewSet)
 
 urlpatterns = [
-    path('api/', include(router.urls)),
     path('admin/', admin.site.urls),
+    path('api/', include(router.urls)),  
+    path('reservations/', reservation_list, name='reservation_list'),
+    # 루트 URL 추가
+    path('', reservation_list, name='home'),  
 ]
+
 
