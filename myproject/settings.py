@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -82,11 +83,11 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mydatabase',         # 생성한 MySQL 데이터베이스 이름
-        'USER': 'myuser',             # MySQL 사용자 이름
-        'PASSWORD': 'mypassword',     # 해당 사용자의 비밀번호
-        'HOST': 'localhost',          # MySQL 서버 주소 (로컬 설치의 경우 'localhost')
-        'PORT': '3306',               # MySQL 기본 포트
+        'NAME': os.environ.get('DATABASE_NAME', 'mydatabase'),      # 기본값: mydatabase
+        'USER': os.environ.get('DATABASE_USER', 'myuser'),            # 기본값: myuser
+        'PASSWORD': os.environ.get('DATABASE_PASSWORD', 'mypassword'),# 기본값: mypassword
+        'HOST': os.environ.get('DATABASE_HOST', 'db'),                # Docker Compose 사용 시 MySQL 컨테이너 이름 ('db')
+        'PORT': os.environ.get('DATABASE_PORT', '3306'),              # 기본 포트 3306
     }
 }
 
