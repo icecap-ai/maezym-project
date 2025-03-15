@@ -37,17 +37,23 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'maezym',                   # maezym` 앱, `rest_framework`, `corsheaders` 등을 `INSTALLED_APPS`에 추가'
+    'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',    # CORS 미들웨어 추가
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',    
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True  # 개발 단계에서 편의상 전체 허용
 
 ROOT_URLCONF = 'myproject.urls'
 
@@ -75,8 +81,12 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mydatabase',         # 생성한 MySQL 데이터베이스 이름
+        'USER': 'myuser',             # MySQL 사용자 이름
+        'PASSWORD': 'mypassword',     # 해당 사용자의 비밀번호
+        'HOST': 'localhost',          # MySQL 서버 주소 (로컬 설치의 경우 'localhost')
+        'PORT': '3306',               # MySQL 기본 포트
     }
 }
 
